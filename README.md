@@ -10,7 +10,8 @@ It is a simple script that picks a big text message with urls in it and extract 
 
 ## FUTURE GOALS
 
-[ ] Translate to English.  
-[ ] Make wget use multiple processing.  
-[ ] Use as set to save the urls to text file so it doesnt append duplicate urls.  
-[ ] Clean the terminal messages shown.  
+- [ ] Translate to English.  
+- [ ] Make wget use multiple processing.  
+- [ ] Use as set to save the urls to text file so it doesnt append duplicate urls.  
+- [ ] Clean the terminal messages shown.  
+
