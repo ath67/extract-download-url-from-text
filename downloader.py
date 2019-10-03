@@ -1,56 +1,56 @@
 import time
 try:
    import wget
-   print("Modulo wget encontrado!")
+   print("WGET module found!")
 except ImportError:
-   print ("Modulo wget não foi encontrado, tente instala-lo antes de executar o script. Pesquise por 'pip intall' na internet. Esse aviso ficará na tela por 1:30 minuto")
+   print ("WGET module not found, try to install it before running the script. Search for 'pip intall'. This warning will be on screen for 1:30 minutes")
    time.sleep(90)
 
 import wget, os
 
 a= 's'
-arquivo = input("Digite o nome do arquivo com extensão e que esteja no root desse script")
-a = open(arquivo, 'r') #leitura do arquivo com o texto original
+arquivo = input("Type the filename with the extension. The file should be on the script's root. FILENAME:   ")
+a = open(arquivo, 'r') #reading file with original text
 text = a.read()
 a.close()
-print(text)                 #printa o texto original
-a1=text.replace("\n", " ")  #coloca tudo em uma só linha (apaga os \n)
-a1=a1.replace("http", " http")  #cria um espaço entre qualquer frase que tenha "XXX:http" para o split() considerar o http uma palavra separada
-a11=a1.split()              #cria uma lista em q cada palavra do texto é um item
-print(a1)                   #printa o texto "tratado" para o split
-print("splits=", str(a11))  #printa a lista
+print(text)                 #print original text
+a1=text.replace("\n", " ")  #puts everything in only one line (deletes any '\n')
+a1=a1.replace("http", " http")  #creates a space between any frase that have "XXX:http" so split() consider the http a separete word
+a11=a1.split()              #creates a list that every text in the a1 is an item
+print(a1)                   #prints the text before splitting
+print("splits=", str(a11))  #prints the split() list
 
-print(type(a11))            #printa uma checagem para saber se a11 é lista
+print(type(a11))            #print a check to make sure a11 is a list
 
 
 y=1
 linksVAR=[]
-for string in a11:          #loop que separa cada item da lista que contenha "http"
+for string in a11:          #loop that will filter every list item that has "http"
     if 'http' in string:
         linksVAR.append(string)
         print(linksVAR)
-        print(string)        #printa  o item com http
-        print("Link numero:", y)  #Printa uma contagem de links salvos
-        textfinal = open('links-tratados.txt', 'a')  #cria/dá append um arquivo para salvar os links
+        print(string)        #prints the item with "http"
+        print("Link number:", y)  #Prints an couter of processed urls
+        textfinal = open('url-list.txt', 'a')  #appends links to an .txt file on script's root
         textfinal.write(string + '\n')
         textfinal.close()
-        y=y+1                #soma à contagem
+        y=y+1                #sum to the couter
 
 
 
-dirpath = os.getcwd()       #descobrir o diretorio atual
+dirpath = os.getcwd()       #find script's root
 
-mypath = dirpath + '\wgetfiles' #diretorio a ser criado/arquivos salvos
-if not os.path.isdir(mypath):       #criação do diretorio caso n exista
+mypath = dirpath + '\wgetfiles' #directory to save files
+if not os.path.isdir(mypath):       #creates the directory/paste if it doesnt exist yet
     os.makedirs(mypath)
 
 
 print(linksVAR)
-for i in range(0, len(linksVAR)):       #loop para baixar cada link de um arquivo
-    linkbaixar= linksVAR[i]     #ler itens da lista e igualar a uma variavel
-    print('São ', len(linksVAR), ' itens para baixar.') #printa nº de itens
-    print('__________baixando item nº', i+1, ':', linksVAR[i]) #printa item atual baixando
-    wget.download(linkbaixar, out=mypath)           #wget no link
+for i in range(0, len(linksVAR)):       #loop that downloads every url in a 'clean file'
+    linkbaixar= linksVAR[i]     #reads list itens
+    print('There are ', len(linksVAR), ' items to download.') #prints list length (number of itens to download)
+    print('__________downloading item nº', i+1, ':', linksVAR[i]) #prints current item wich is being downloaded
+    wget.download(linkbaixar, out=mypath)           #wget's the item/url
 
-print("Download terminado! Essa mensagem ficará na tela por 1 minuto")
+print("Finished downloading! This message will stay on scree for 1 minute")
 time.sleep(60)
