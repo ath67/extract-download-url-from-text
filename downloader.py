@@ -24,16 +24,23 @@ print(type(a11))            #print a check to make sure a11 is a list
 
 
 y=1
-linksVAR=[]
+linksVAR=set()
 for string in a11:          #loop that will filter every list item that has "http"
     if 'http' in string:
-        linksVAR.append(string)
+        linksVAR.add(string)
         print(linksVAR)
         print(string)        #prints the item with "http"
         print("Link number:", y)  #Prints an couter of processed urls
-        textfinal = open('url-list.txt', 'a')  #appends links to an .txt file on script's root
-        textfinal.write(string + '\n')
-        textfinal.close()
+        opn=open('url-list.txt', 'a')  #creates file for output if already doesnt exists
+        opn.close()
+        textfinal = open('url-list.txt', 'r+')  #appends links to an .txt file on script's root
+        reading = textfinal.read()
+        if string in reading:             #ignores file already downloaded before (checks the output text file)
+           linksVAR.remove(string)
+           
+        else:
+           textfinal.write(string + '\n')
+           textfinal.close()
         y=y+1                #sum to the couter
 
 
@@ -46,11 +53,13 @@ if not os.path.isdir(mypath):       #creates the directory/paste if it doesnt ex
 
 
 print(linksVAR)
-for i in range(0, len(linksVAR)):       #loop that downloads every url in a 'clean file'
-    linkbaixar= linksVAR[i]     #reads list itens
+s= len(linksVAR) - (len(linksVAR)-1)
+for i in linksVAR:       #loop that downloads every url in a 'clean file'
+    linkbaixar= i     #reads list itens
     print('There are ', len(linksVAR), ' items to download.') #prints list length (number of itens to download)
-    print('__________downloading item nº', i+1, ':', linksVAR[i]) #prints current item wich is being downloaded
+    print('__________downloading item nº', s, ':', i) #prints current item wich is being downloaded
     wget.download(linkbaixar, out=mypath)           #wget's the item/url
+    s += 1
 
 print("Finished downloading! This message will stay on scree for 1 minute")
 time.sleep(60)
