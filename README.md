@@ -15,5 +15,5 @@ It is a simple script that picks a big text message with urls in it and extract 
 - [ ] Make wget use multiple processing.  
 - [ ] Use as set to save the urls to text file so it doesnt append duplicate urls.  
 - [ ] Clean the terminal messages shown.  
-- [ ] Auto install WGET module.
+- [ ] Automatic install WGET module.
 
