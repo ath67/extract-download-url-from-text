@@ -16,5 +16,4 @@ It is a simple script that picks a big text message with urls of files in it and
 - [x] Use as set to save the urls to text file so it doesnt append duplicate urls.  
 - [ ] Clean the terminal messages shown.  
 - [ ] Automatic install WGET module.  
-- [ ] Using the *set()* made an error in the output file with the url links and it needs a fix. (reading with 'r+' mode will overwrite the old data)
 
