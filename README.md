@@ -1,7 +1,8 @@
 # extract-download-url-from-text
 It is a simple script that picks a big text message with urls of files in it and extract the links, saves a TXT file and also downloads the files to a folder.
 
-### Needs to install manually the *WGET module*
+### Dependencies:
+- *wget*
 
 ## USAGE
 1. You need to have a file on the script directory root with some message and some url in it. When running the script will ask you to input the filename.
@@ -14,6 +15,7 @@ It is a simple script that picks a big text message with urls of files in it and
 - [x] Translate to English.  
 - [ ] Make wget use multiple processing.  
 - [x] Use as set to save the urls to text file so it doesnt append duplicate urls.  
-- [ ] Clean the terminal messages shown.  
+- [x] Clean the terminal messages shown.  
 - [ ] Automatic install WGET module.  
+- [ ] When user doesnt approve list, delete URLS from OutputFile
 
