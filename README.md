@@ -17,5 +17,5 @@ It is a simple script that picks a big text message with urls of files in it and
 - [x] Use as set to save the urls to text file so it doesnt append duplicate urls.  
 - [x] Clean the terminal messages shown.  
 - [ ] Automatic install WGET module.  
-- [ ] When user doesnt approve list, delete URLS from OutputFile
+- [x] When user doesnt approve list, delete URLS from OutputFile
 
