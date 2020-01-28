@@ -16,7 +16,9 @@ a.close()
 print ('-'*80) 
 print("Text selected:")
 print(text)                 #print original text
-print ('-'*80) 
+print ('-'*80)
+
+#cleaning original text:
 a1=text.replace("\n", " ")  #puts everything in only one line (deletes any '\n')
 a1=a1.replace("http", " http")  #creates a space between any frase that have "XXX:http" so split() consider the http a separete word
 a11=a1.split()              #creates a list that every text in the a1 is an item
@@ -43,7 +45,7 @@ for string in a11:          #loop that will filter every list item that has "htt
            linksVAR.remove(string)
            
         else:
-           print("Link # in text:", y, ". URL:", string)  #Prints an couter of processed urls and it's URL/item with http
+           print("Link #", y,  "in text.", " URL:", string)  #Prints an couter of processed urls and it's URL/item with http
            linksREAD.add(string)
            time.sleep(0.3)
            textfinal.write(string + '\n')
@@ -56,13 +58,23 @@ time.sleep(15)
 check=input("If everything is fine, type 'OK' (all caps), if not type anything different:  ")   #checks if user approves list of links
 if check != "OK":
    print("Deleting links above from output file and closing scprit in 10 sec...")
-   outputx= open('url-list.txt', 'r+')    #Try to delete the list saved on the set named linksREAD //Still to correct, not working
-   for line in outputx:
-      for word in linksREAD:
-         line=line.replace(word, "")
-      outputx.write(line)
+   #Deleting the urls from 'url-list.txt' as request of user
+   outputx= open('url-list.txt', 'r+')    #reads file with urls to be deleted
+   outputxreading = outputx.read()
+   out2=set()
+   out1=outputxreading.replace("\n", " ")
+   out2=out1.split() #transforms url-list into an list variable
+   for string in out2:
+      if string in linksREAD:             #removes all the urls that were added to the file in this run of the script (they were saved into the linksREAD variable
+           out2.remove(string)
+   tx=open("url-list.txt", "w+")          #overwrites the 'url-list.txt' file to do a new one without the wrong urls
+   tx.close
+   for string in out2:
+      tx=open("url-list.txt", "a")
+      tx.write(string + "\n")             #appends each url of the list to the file
+      tx.close
    time.sleep(10)
-   exit()
+   exit()                     #kills the script
 
 
 
@@ -84,5 +96,5 @@ for i in linksVAR:       #loop that downloads every url in a 'clean file'
     s += 1
 print ('-'*80)
 print ('-'*80)
-print("Finished downloading! This message will stay on scree for 40 sec! Bye!!")
-time.sleep(60)
+print("Finished downloading! This message will stay on screen for 40 sec! Bye!!")
+time.sleep(40)
