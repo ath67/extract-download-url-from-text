@@ -10,7 +10,7 @@ import wget, os
 
 a= 's'
 arquivo = input("Type the filename with the extension. The file should be on the script's root. FILENAME:   ")
-a = open(arquivo, 'r') #reading file with original text
+a = open(arquivo, 'r', encoding="utf8") #reading file with original text
 text = a.read()
 a.close()
 print ('-'*80) 
